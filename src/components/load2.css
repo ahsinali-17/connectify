@@ -1,0 +1,46 @@
+
+.box{
+    display: inline-block;
+    width: 6px;
+    height: 50px;
+    margin-left: 5px;
+    background-image: linear-gradient(rgba(142, 33, 118,0.7),rgba(50, 132, 203,0.7),rgba(153, 220, 136,0.7));
+    position: relative;
+    border-radius: 50px;
+    top: 50px;
+    left: 50px;
+    animation: bars 0.5s ease-in 0s infinite alternate;
+}
+.box:nth-child(2){
+    animation-delay: 0.1s;
+}
+.box:nth-child(3){
+    animation-delay: 0.2s;
+}
+.box:nth-child(4){
+    animation-delay: 0.1s;
+}
+.box:nth-child(5){
+    animation-delay: 0s;
+}
+@keyframes bars {
+    0%{
+        transform: scaleY(0);
+    }
+    20%{
+        transform: scaleY(0.2);
+    }
+    40%{
+        transform: scaleY(0.4);
+    }
+    60%{
+        transform: scaleY(0.6);
+    }
+    80%{
+        transform: scaleY(0.8);
+    }
+    100%{
+        transform: scaleY(1);
+    }
+}
+
