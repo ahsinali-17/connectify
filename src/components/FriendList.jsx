@@ -23,7 +23,7 @@ const FriendList = () => {
       dispatch(setFriends({ friends: data }));
     };
     getFriends();
-  }, []);
+  }, [User]);
 
   return (
     <div className="w-full flex flex-col gap-4 px-4">

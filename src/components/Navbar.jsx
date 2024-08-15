@@ -81,7 +81,7 @@ const Navbar = () => {
       <nav
         className={`w-screen ${
           mode === "dark" ? "bg-slate-600" : "bg-white"
-        } flex justify-between items-center h-[8vh] px-6 py-2 fixed top-0`}
+        } flex justify-between items-center h-[8vh] px-6 py-2 fixed top-0 shadoww z-50`}
       >
         <Link to="/home">
           <div className="title text-2xl font-bold text-sky-400" >

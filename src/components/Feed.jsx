@@ -86,7 +86,7 @@ const Feed = ({ posts }) => {
   };
 
   return (
-    <div className="posts mt-4 flex flex-col gap-3 w-full">
+    <div className="posts mt-2 flex flex-col gap-3">
       <div
         className={`${
           showimage ? "block" : "hidden"
@@ -271,7 +271,6 @@ const Feed = ({ posts }) => {
               {post.videoPath && (
                 <div className={`w-full flex items-center bg-black`}>
                   <video
-                    ref={videoRef}
                     className="max-w-full object-contain h-96 rounded-lg"
                     controls
                     autoPlay

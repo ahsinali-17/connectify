@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-const Dashboard = ({ User,posts }) => {
+const Dashboard = ({ User,postslen }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ const Dashboard = ({ User,posts }) => {
             {User.firstName + " " + User.lastName}
           </span>
           <span className="text-center text-sm text-gray-500 cursor-text">
-            {User.friends.length} Followers &nbsp; {posts?`${posts.length} posts`:""}
+            {User.friends.length} Followers &nbsp; {postslen?`${postslen} posts`:""}
            </span>
         </div>
       </div>

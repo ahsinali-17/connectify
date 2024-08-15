@@ -105,13 +105,13 @@ const Profile = () => {
           mode === "dark" ? "bg-gray-700" : "bg-white"
         } max-h-[72vh] overflow-y-auto shadoww`}
       >
-        <Dashboard User={user} posts={posts ? posts : dummyPost}/>
+        <Dashboard User={user} postslen={posts && posts.length}/>
       </div>
 
       <div
         className={`lg:w-[50%] w-full rounded-lg ${
           navigation === "feed" ? "flex" : "hidden"
-        } lg:flex flex-col max-h-[90vh] overflow-y-scroll ${
+        } lg:flex flex-col max-h-[90vh] overflow-y-auto ${
           mode === "dark" ? "bg-gray-800" : "bg-gray-200"
         } p-2 lg:pb-6 pb-20 shadoww`}
       >
