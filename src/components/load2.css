@@ -7,8 +7,6 @@
     background-image: linear-gradient(rgba(142, 33, 118,0.7),rgba(50, 132, 203,0.7),rgba(153, 220, 136,0.7));
     position: relative;
     border-radius: 50px;
-    top: 50px;
-    left: 50px;
     animation: bars 0.5s ease-in 0s infinite alternate;
 }
 .box:nth-child(2){

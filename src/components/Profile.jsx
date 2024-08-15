@@ -24,9 +24,11 @@ const Profile = () => {
     impressions: 1000,
   });
 
-  const [navigation, setnavigation] = useState("feed");
+  const [navigation, setnavigation] = useState("dashboard");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     const getUser = async () => {
       const res = await fetch(`http://localhost:5000/users/${userId}`, {
         method: "GET",
@@ -52,18 +54,22 @@ const Profile = () => {
       dispatch(setPosts({ posts: data }));
     };
     getUserPosts();
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
+    
   }, [userId]);
 
-  if(User === null || posts.length == 0) 
-    return <div className={`mt-[8vh] h-[92vh] ${
+  if(User === null || loading) 
+    return <div className={`pt-[25vh] h-[100vh] ${
       mode === "dark" ? "bg-gray-900 text-white" : "bg-white text-black"
-    } px-4 pt-4`}><Loader/></div>;
+    }`}><Loader/></div>;
 
   return (
     <div
       className={`mt-[8vh] h-[92vh] ${
         mode === "dark" ? "bg-gray-900 text-white" : "bg-white text-black"
-      } px-4 pt-4`}
+      } px-4 pt-4 z-0`}
     >
 
       <div className="flex lg:hidden rounded-full bg-gray-300 p-0 m-0 mb-2">

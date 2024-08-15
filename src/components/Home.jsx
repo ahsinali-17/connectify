@@ -7,6 +7,7 @@ import AddPost from "./AddPost";
 import FriendList from "./FriendList";
 import Dashboard from "./Dashboard";
 import Loader from "./Loader";
+import { set } from "react-hook-form";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -16,8 +17,15 @@ const Home = () => {
   const mode = useSelector((state) => state.auth.mode);
   const token = useSelector((state) => state.auth.token);
 
+  const [navigation, setnavigation] = useState("feed");
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
+    setLoading(true);
     getPosts();
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
   }, []);
 
   const getPosts = async () => {
@@ -32,12 +40,10 @@ const Home = () => {
     dispatch(setPosts({ posts: data }));
   };
 
-  const [navigation, setnavigation] = useState("feed");
-
-  if(User === null || posts.length == 0) 
-    return <div className={`mt-[8vh] h-[92vh] ${
+  if(User === null || loading) 
+    return <div className={`pt-[25vh] h-[100vh] ${
       mode === "dark" ? "bg-gray-900 text-white" : "bg-white text-black"
-    } px-4 pt-4`}><Loader/></div>;
+    } w-screen flex justify-center`}><Loader/></div>;
 
   return (
     <div

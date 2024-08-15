@@ -78,6 +78,9 @@ const AddPost = () => {
             src={`http://localhost:5000/assets/${User.picturePath}`}
             alt="profile"
             className="rounded-full w-12 h-12 cursor-pointer object-cover"
+            onClick={() => {
+              Navigate(`/profile/${User._id}`);
+            }}
           />
           <input
             type="text"

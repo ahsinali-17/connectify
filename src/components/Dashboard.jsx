@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setPosts } from "../state/index";
-import { Link } from "react-router-dom";
 
 const Dashboard = ({ User,posts }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
+  useEffect(() => {}, []); 
 
   const [count, setcount] = useState(0);
   const [message, setmessage] = useState("");
   return (
     <div className="w-full">
-      <Link
-        to={`/profile/${User._id}`}
-        className="top-info flex gap-6 mb-3 cursor-pointer"
+      <div
+        className="top-info flex gap-6 mb-3"
       >
         <img
           src={`http://localhost:5000/assets/${User.picturePath}`}
@@ -23,14 +21,14 @@ const Dashboard = ({ User,posts }) => {
           className="rounded-full w-16 h-16 object-cover"
         />
         <div className="flex flex-col justify-center">
-          <span className="text-lg font-semibold hover:underline">
+          <span className="text-lg font-semibold">
             {User.firstName + " " + User.lastName}
           </span>
           <span className="text-center text-sm text-gray-500 cursor-text">
             {User.friends.length} Followers &nbsp; {posts?`${posts.length} posts`:""}
            </span>
         </div>
-      </Link>
+      </div>
       <div className="hr w-[80%] h-0.5 bg-gray-300 mx-auto"></div>
 
       <div className="mid-info mt-4 space-y-3 mb-3">

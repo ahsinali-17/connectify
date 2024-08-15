@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -10,7 +9,6 @@ import { toast, Bounce } from "react-toastify";
 
 const Feed = ({ posts }) => {
 
-  const videoRef = useRef(null);
   const dispatch = useDispatch();
   const User = useSelector((state) => state.auth.user);
   const token = useSelector((state) => state.auth.token);
@@ -88,11 +86,11 @@ const Feed = ({ posts }) => {
   };
 
   return (
-    <div className="posts mt-4 flex flex-col gap-3 relative w-full">
+    <div className="posts mt-4 flex flex-col gap-3 w-full">
       <div
         className={`${
           showimage ? "block" : "hidden"
-        } fixed top-14 left-0 lg:left-10 lg:w-[95vw] h-[90vh] ${
+        } fixed top-14 left-0 lg:left-10 w-full lg:w-[95vw] h-[90vh] ${
           mode === "light" ? "bg-black" : "bg-slate-600"
         } bg-opacity-70 z-10 flex items-center border-2 border-sky-400`}
       >
@@ -113,7 +111,7 @@ const Feed = ({ posts }) => {
       {posts.length !== 0 ? posts.map((post, index) => {
         return (
           <div
-            className={` z-0 post px-6 py-2 flex flex-col ${
+            className={`z-0 post px-6 py-2 flex flex-col ${
               mode === "dark" ? "bg-gray-700" : "bg-white"
             } rounded-lg`}
             key={index}
@@ -134,7 +132,6 @@ const Feed = ({ posts }) => {
                 <Link
                   to={`/profile/${post.userId}`}
                   className="cursor-pointer flex flex-col"
-                  
                 >
                   <span className="text-md font-semibold hover:underline">
                     {post.firstName + " " + post.lastName}
