@@ -6,6 +6,7 @@ import Feed from "./Feed";
 import AddPost from "./AddPost";
 import FriendList from "./FriendList";
 import Dashboard from "./Dashboard";
+import Loader from "./Loader";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -33,8 +34,10 @@ const Home = () => {
 
   const [navigation, setnavigation] = useState("feed");
 
-  if(User === null) 
-    return <div></div>;
+  if(User === null || posts.length == 0) 
+    return <div className={`mt-[8vh] h-[92vh] ${
+      mode === "dark" ? "bg-gray-900 text-white" : "bg-white text-black"
+    } px-4 pt-4`}><Loader/></div>;
 
   return (
     <div

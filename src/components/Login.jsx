@@ -130,6 +130,16 @@ const Login = () => {
           Login
         </button>
         <p className="text-sm text-center">
+          Forgot Password?{" "}
+          <span
+            className="text-sky-400 cursor-pointer font-bold"
+            onClick={() => {
+              navigate("/forgotpassword");
+            }}
+          >
+            Reset
+          </span></p>
+        <p className="text-sm text-center">
           Don't have an account?{" "}
           <span
             className="text-red-500 cursor-pointer font-bold"

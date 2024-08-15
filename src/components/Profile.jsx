@@ -4,6 +4,7 @@ import Dashboard from "./Dashboard";
 import { useSelector, useDispatch } from "react-redux";
 import { setPosts } from "../state/index";
 import { useParams } from "react-router-dom";
+import Loader from "./Loader";
 
 const Profile = () => {
   const mode = useSelector((state) => state.auth.mode);
@@ -53,9 +54,10 @@ const Profile = () => {
     getUserPosts();
   }, [userId]);
 
-  if(User === null) 
-    return <div></div>;
-
+  if(User === null || posts.length == 0) 
+    return <div className={`mt-[8vh] h-[92vh] ${
+      mode === "dark" ? "bg-gray-900 text-white" : "bg-white text-black"
+    } px-4 pt-4`}><Loader/></div>;
 
   return (
     <div

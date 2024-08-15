@@ -83,7 +83,7 @@ const Navbar = () => {
         } flex justify-between items-center h-[8vh] px-6 py-2 fixed top-0`}
       >
         <Link to="/home">
-          <div className="title text-2xl font-bold text-sky-400">
+          <div className="title text-2xl font-bold text-sky-400" >
             Connectify
           </div>
         </Link>
@@ -145,6 +145,7 @@ const Navbar = () => {
               <Link to={`/profile/${User._id}`} className="hover:text-white">
                 Profile
               </Link>
+              
               <p
                 className="hover:text-white"
                 onClick={() => {
@@ -182,6 +183,9 @@ const Navbar = () => {
           Update
         </button>
               </form>
+              <Link to={`/changepass/${User._id}`} className="hover:text-white">
+                Change Password
+              </Link>
             </div>
           </div>
         </div>

@@ -12,6 +12,7 @@ import { register } from "./controllers/auth.js";
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js";
+import passwordRoutes from "./routes/password.js";
 import { verifytoken } from "./middleware/auth.js";
 import { createPost } from "./controllers/posts.js";
 import { updateUserPicture } from "./controllers/users.js";
@@ -74,3 +75,4 @@ app.post(
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
+app.use("/password", passwordRoutes);

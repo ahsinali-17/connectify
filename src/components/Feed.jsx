@@ -21,6 +21,8 @@ const Feed = ({ posts }) => {
   const [showimage, setshowimage] = useState(false);
   const [image, setimage] = useState(null);
   const [comment, setcomment] = useState("");
+  const [editdes, seteditdes] = useState(false);
+  const [des, setdes] = useState("");
 
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
@@ -132,6 +134,7 @@ const Feed = ({ posts }) => {
                 <Link
                   to={`/profile/${post.userId}`}
                   className="cursor-pointer flex flex-col"
+                  
                 >
                   <span className="text-md font-semibold hover:underline">
                     {post.firstName + " " + post.lastName}
@@ -143,6 +146,11 @@ const Feed = ({ posts }) => {
               </div>
               <div className="left-head">
                 {post.userId === User._id ? (
+                  <div className="flex items-center gap-2">
+                <img src="\assets\edit.svg" alt="edit" className={`h-6 w-6 cursor-pointer ${editdes?'hidden':'block'}`} onClick={()=>{
+                    seteditdes(!editdes)
+                    setdes(post.description)
+                  }}/>
                   <img
                     src="\assets\delete.svg"
                     alt="delete"
@@ -194,6 +202,7 @@ const Feed = ({ posts }) => {
                       }
                     }}
                   />
+                  </div>
                 ) : (
                   <img
                     src={`${
@@ -223,7 +232,29 @@ const Feed = ({ posts }) => {
                 )}
               </div>
             </div>
-            <p className="my-2 text-sm">{post.description}</p>
+            <p className={`my-2 text-sm ${editdes?'hidden':'block'}`}>{post.description}</p>
+             <div className={`${editdes?'flex':'hidden'} items-center gap-2 mb-3`}>
+              <input className="w-[85%] h-6 outline-none p-2 text-wrap" value={des} onChange={(e)=> setdes(e.target.value)}/>
+              <button className="bg-sky-400 text-white p-2 px-4 rounded-full" onClick={
+                async()=>{
+                  seteditdes(!editdes)
+                  let res = await fetch(`http://localhost:5000/posts/${post._id}/edit`,{
+                    method: "PATCH",
+                    headers: {
+                      "Content-Type": "application/json",
+                      Authorization: token,
+                    },
+                    body: JSON.stringify({
+                      description: des
+                    }),
+                  });
+                  let upd = await res.json();
+                  console.log(upd)
+                  if(res.status === 200)
+                  dispatch(setPost({post: upd}));
+                }}> Save
+                </button>
+             </div>
 
             <Slider
               {...(post.picturePath && post.videoPath ? settings : settings2)}

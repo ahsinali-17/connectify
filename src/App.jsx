@@ -7,6 +7,9 @@ import { useState } from 'react'
 import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ForgotPassword from './components/ForgotPassword'
+import ResetPass from './components/ResetPass'
+import ChangePass from './components/ChangePass'
 
 function App() {
   const router = createBrowserRouter([
@@ -25,6 +28,18 @@ function App() {
     {
       path: '/register',
       element: <Register/>,
+    },
+    {
+      path: '/forgotpassword',
+      element: <ForgotPassword/>,
+    },
+    {
+      path: '/resetpass/:token',
+      element: <ResetPass/>,
+    },
+    {
+      path: '/changepass/:id',
+      element: <ChangePass/>,
     }
   ])
 

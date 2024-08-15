@@ -102,12 +102,28 @@ export const commentPost = async (req,res) =>{
         res.status(404).json({message : err.message})
     }
 }
+
+export const editPost = async (req,res) =>{
+  try{
+    let {id} = req.params;
+    let post = await Post.findById(id)
+    if(!post) return res.status(404).json({message : "Post not found"})
+
+      post.description = req.body.description
+      post.save()
+      res.status(200).json(post)
+  }
+  catch(err){
+    res.status(404).json({message : err.message})
+  }
+}
+
 /* DELETE */
 export const delPost = async (req, res) => {
     try {
-        const { id: postId } = req.params;
+        const { id } = req.params;
         const {userId} = req.body;
-        const post = await Post.findById(postId); 
+        const post = await Post.findById(id); 
 
         if (!post) {
             return res.status(404).json({ message: "Post not found" });

@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt'    // to hash password
 import jwt from 'jsonwebtoken' // to generate signed token
 import {User} from '../models/User.js'
+
  
 /* Register User */
 export const register = async (req,res)=>{
@@ -59,3 +60,4 @@ await User.updateOne(
         res.status(500).json({message: err.message})
     }
 }
+

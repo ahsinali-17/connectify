@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { setPosts } from "../state/index";
 import { Link } from "react-router-dom";
 
 const Dashboard = ({ User,posts }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  useEffect(() => {}, []);
+  
 
   const [count, setcount] = useState(0);
   const [message, setmessage] = useState("");

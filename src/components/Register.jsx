@@ -72,11 +72,11 @@ const Register = () => {
 
   return (
     <div className="container mx-auto mt-6">
-      <h3 className="font-bold text-xl text-gray-600 text-center mb-6">
+      <h3 className="font-bold text-xl text-gray-600 text-center mb-3">
         Get started with Connectify!
       </h3>
       <form
-        className="bg-gray-300 lg:w-[50%] md:w-[75%] w-full max-h-[80vh] mx-auto p-6"
+        className="bg-gray-300 lg:w-[50%] md:w-[75%] w-full max-h-[90vh] mx-auto p-6"
         onSubmit={(e) => handleSubmit(submitForm)(e)}
       >
         <div className="name flex gap-6 mb-3">

@@ -36,6 +36,8 @@ const userSchema = mongoose.Schema({
     views: Number,
     impressions: Number,
     occupation: String, 
+    resetPasswordToken : String,
+    resetPasswordExpires: Date,
 },
 {timestamps: true} //automatically add createdAt and updatedAt fields
 );
