@@ -57,7 +57,7 @@ const Home = () => {
           onClick={() => {
             setnavigation("dashboard");
           }}
-          className={`w-full h-full ${
+          className={`w-1/3 h-full ${
             navigation === "dashboard"
               ? "bg-sky-400 font-semibold text-white"
               : ""
@@ -69,7 +69,7 @@ const Home = () => {
           onClick={() => {
             setnavigation("feed");
           }}
-          className={`w-full h-full ${
+          className={`w-1/3 h-full ${
             navigation === "feed" ? "bg-sky-400 font-semibold text-white" : ""
           } p-2 rounded`}
         >
@@ -79,7 +79,7 @@ const Home = () => {
           onClick={() => {
             setnavigation("friends");
           }}
-          className={`w-full h-full ${
+          className={`w-1/3 h-full ${
             navigation === "friends"
               ? "bg-sky-400 font-semibold text-white"
               : ""

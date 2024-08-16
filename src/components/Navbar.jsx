@@ -139,7 +139,7 @@ const Navbar = () => {
             className={`fixed top-[8vh] right-2 bg-gray-300 p-2 rounded-md shadow-md transform transition duration-300 ease-in-out z-10 ${
               dropDown
                 ? "scale-100 opacity-100"
-                : "scale-50 opacity-0"
+                : "scale-50 opacity-0 hidden"
             }`}
           >
             <div className="flex flex-col gap-3 text-sky-400 font-semibold cursor-pointer">
