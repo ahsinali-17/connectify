@@ -185,7 +185,7 @@ const Feed = ({ posts }) => {
                             theme: "colored",
                             transition: Bounce,
                           });
-                        } else if (res.status === 409)
+                        } else if (res.status === 409 || res.status === 404) 
                           toast.error("Post Deletion Failed!", {
                             position: "top-right",
                             autoClose: 1000,

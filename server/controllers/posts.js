@@ -129,7 +129,7 @@ export const delPost = async (req, res) => {
             return res.status(404).json({ message: "Post not found" });
         }
 
-        await Post.findByIdAndDelete(postId); 
+        await Post.findByIdAndDelete(id); 
 
         const posts = await Post.find({userId: userId}).sort({ createdAt: -1 }); 
         res.status(200).json(posts); 
