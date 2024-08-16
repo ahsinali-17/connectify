@@ -151,7 +151,6 @@ const Navbar = () => {
                 className="hover:text-white"
                 onClick={() => {
                   dispatch(setLogout());
-                  
                   toast.success("Logout Successful", {
                     position: "top-right",
                     autoClose: 1000,

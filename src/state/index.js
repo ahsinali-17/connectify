@@ -4,7 +4,8 @@ const initialState = {
     mode : "light", 
     user  : null,
     posts : [],
-    token : null
+    token : null,
+    friends : []
 }
 
 export const authSlice = createSlice({
@@ -27,7 +28,7 @@ export const authSlice = createSlice({
         },
         setFriends : (state,action) =>{
             if(state.user)
-                state.user.friends = action.payload.friends;
+                state.friends = action.payload.friends;
             else console.error("User not logged in")
         },
         setPosts : (state,action) =>{

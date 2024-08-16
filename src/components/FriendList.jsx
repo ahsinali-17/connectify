@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const FriendList = () => {
   const dispatch = useDispatch();
   const User = useSelector((state) => state.auth.user);
+  const friends = useSelector((state) => state.auth.friends);
   const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
@@ -20,17 +21,18 @@ const FriendList = () => {
         }
       );
       const data = await res.json();
-      dispatch(setFriends({ friends: data }));
+      if (res.status === 200) dispatch(setFriends({ friends: data }));
+      console.log(data);
     };
     getFriends();
-  }, [User]);
+  }, []);
 
   return (
     <div className="w-full flex flex-col gap-4 px-4">
       <h1 className="text-2xl text-center font-semibold underline underline-offset-2 decoration-sky-400 mb-4">
         Friends
       </h1>
-      {User.friends.map((friend, index) => {
+      {friends.map((friend, index) => {
         return (
           <div className="flex justify-between items-center" key={index}>
             <Link
@@ -54,7 +56,7 @@ const FriendList = () => {
             </Link>
             <img
               src={`${
-                User.friends.filter((fri) => fri._id === friend._id).length !==
+                friends.filter((fri) => fri._id === friend._id).length !==
                 0
                   ? "/assets/friend_added.svg"
                   : "/assets/friend.svg"
@@ -68,11 +70,12 @@ const FriendList = () => {
                     method: "PATCH",
                     headers: {
                       "Content-Type": "application/json",
+                      Authorization: token,
                     },
                   }
                 );
                 let data = await res.json();
-                dispatch(setFriends({ friends: data }));
+                if(res.status===200) dispatch(setFriends({ friends: data }));
               }}
             />
           </div>

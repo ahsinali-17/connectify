@@ -13,6 +13,7 @@ const Feed = ({ posts }) => {
   const User = useSelector((state) => state.auth.user);
   const token = useSelector((state) => state.auth.token);
   const mode = useSelector((state) => state.auth.mode);
+  const friends = useSelector((state) => state.auth.friends);
 
   const [showcomment, setshowcomment] = useState(false);
   const [postid, setpostid] = useState(null);
@@ -203,7 +204,7 @@ const Feed = ({ posts }) => {
                 ) : (
                   <img
                     src={`${
-                      User.friends.filter(
+                      friends.filter(
                         (friend) => friend._id === post.userId
                       ).length !== 0
                         ? "/assets/friend_added.svg"
