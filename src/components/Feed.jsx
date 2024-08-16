@@ -225,6 +225,7 @@ const Feed = ({ posts }) => {
                       );
                       let data = await res.json();
                       dispatch(setFriends({ friends: data }));
+                      
                     }}
                   />
                 )}
