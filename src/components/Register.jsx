@@ -6,6 +6,8 @@ import { toast, Bounce } from "react-toastify";
 
 const Register = () => {
   const [showpass, setshowpass] = useState(false);
+  const [imagePreview, setImagePreview] = useState(null);
+  
   const User = useSelector((state) => state.auth);
   useEffect(() => {
     if (User.user) navigate("/home");
@@ -23,7 +25,7 @@ const Register = () => {
     e.preventDefault();
     const file = data.file[0];
 
-    const formData = new FormData(); //sets header to multipart/form-data neccessary for multer
+    const formData = new FormData();
     formData.append("picture", file);
     formData.append("firstName", data.firstName);
     formData.append("lastName", data.lastName);
@@ -147,19 +149,35 @@ const Register = () => {
           {...register("occupation")}
           placeholder="Occupation"
         />
-
-<div className="flex flex-col items-center my-4">
+        <div className="flex flex-col items-center my-4">
           <label
             htmlFor="default_size"
             className="cursor-pointer flex flex-col items-center justify-center w-20 h-20 bg-gray-100 rounded-full border-2 border-dashed border-gray-400 hover:bg-gray-200"
           >
-            <img src="/assets/plus.svg" />
+            {imagePreview ? (
+              <img
+                src={imagePreview}
+                alt="Selected Profile"
+                className="w-full h-full object-cover rounded-full"
+              />
+            ) : (
+              <img src="/assets/plus.svg" alt="Add" />
+            )}
             <input
               className="hidden"
               id="default_size"
               type="file"
               accept="image/*"
-              {...register("file", { required: true })}
+              {...register("file", {
+                required: true,
+                onChange: (e) => {
+                  const file = e.target.files[0];
+                  if (file) {
+                    const imageUrl = URL.createObjectURL(file);
+                    setImagePreview(imageUrl);
+                  }
+                },
+              })}
             />
           </label>
           <span className="mt-2 text-md text-gray-600">
