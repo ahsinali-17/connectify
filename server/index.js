@@ -3,11 +3,9 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import multer from "multer"; //Middleware for handling multipart/form-data, used for uploading files.
-import helmet from "helmet"; //Middleware for securing Express apps by setting various HTTP headers.
-import morgan from "morgan"; //HTTP request logger middleware for node.js
+import multer from "multer"; 
 import path from "path";
-import { fileURLToPath } from "url"; //cant use __filename and __dirname in ES6 modules
+import { fileURLToPath } from "url"; 
 import { register } from "./controllers/auth.js";
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
@@ -31,10 +29,7 @@ export const app = express();
 app.use(express.json()); //parse application/json
 app.use(bodyParser.json({ limit: "30mb", extended: true })); //parse application/json
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true })); //parse form data in POST request
-app.use(helmet());
-app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" })); //decides which resources can be requested from a other domain
-app.use(cors('*')); //decides which domain can access the server resources
-app.use(morgan("common")); //The 'common' format logs a predefined set of information in a concise way
+app.use(cors(corsOptions)); //decides which domain can access the server resources
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
 /*Mongoose Setup*/
