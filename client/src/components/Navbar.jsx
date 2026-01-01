@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setLogout, setMode, setUser,setPosts } from "../state/index";
+import { setLogout, setMode, setUser } from "../state/index";
 import { useNavigate } from "react-router-dom";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Bounce, toast } from "react-toastify";
 import Loader from "./Loader";
 import { persistor } from "../state/store";
@@ -204,20 +204,8 @@ const Navbar = () => {
                 className="hover:text-white"
                 onClick={() => {
                   dispatch(setLogout());
-                  toast.success("Logout Successful", {
-                    position: "top-right",
-                    autoClose: 1000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                    transition: Bounce,
-                    onClose: async () => {
-                      await persistor.purge();
-                    }
-                  });
+                      navigate("/");
+                  persistor.purge();
                 }} 
               >
                 Logout

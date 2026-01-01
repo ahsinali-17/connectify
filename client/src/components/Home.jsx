@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setPosts } from "../state/index";
 import Feed from "./Feed";
@@ -7,11 +6,9 @@ import AddPost from "./AddPost";
 import FriendSection from "./FriendSection";
 import Dashboard from "./Dashboard";
 import Loader from "./Loader";
-import { set } from "react-hook-form";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const User = useSelector((state) => state.auth.user);
   const posts = useSelector((state) => state.auth.posts);
   const mode = useSelector((state) => state.auth.mode);
