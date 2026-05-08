@@ -1,5 +1,7 @@
 import {User} from '../models/User.js';
 import {Post} from '../models/Post.js';
+import {Chat} from '../models/Chat.js';
+import { broadcastFriendUpdate } from '../socket.js';
 /* READ */
 export const getUser = async (req,res) => {
     try { 
@@ -24,7 +26,6 @@ export const getUsers = async (req, res) => {
         { lastName: { $regex: search, $options: "i" } },
       ],
     });
-    console.log(users);
 
     let formattedUsers = users.map(user => ({
       _id: user._id,
@@ -46,7 +47,7 @@ export const getUserFriends = async (req,res) => {
             user.friends.map((id)=> User.findById(id))
         ) 
         const friendData = friends.map(
-            ({_id,firstName, lastName, picturePath,occupation,location})=> { //may need to change
+            ({_id,firstName, lastName, picturePath,occupation,location})=> { 
             return {_id,firstName, lastName, picturePath,occupation,location}
     }
 )
@@ -56,31 +57,29 @@ export const getUserFriends = async (req,res) => {
     }
 }
 
-/* UPDATE */
 export const addRemoveFriend = async (req,res) => {
     try{
        const {id,friendid} = req.params
        const user = await User.findById(id)
        const friend = await User.findById(friendid)
        if(user.friends.includes(friendid)){
-        user.friends = user.friends.filter((id) => id !== friendid)
-        friend.friends = friend.friends.filter((fid) => fid !== id)
-       }
-       else{
+        await Chat.deleteOne({participants: [id, friendid].sort()})
+        user.friends = user.friends.filter((fid) => fid !== friendid)
+      } else{
         user.friends.push(friendid)
-        friend.friends.push(id)
        }
-         await user.save() //as we are updating the db
-         await friend.save() 
+         await user.save() 
 
          const friends = await Promise.all(
             user.friends.map((id)=> User.findById(id))
         ) 
         const friendData = friends.map(
-            ({_id,firstName, lastName, picturePath,occupation,location})=> { //may need to change
+            ({_id,firstName, lastName, picturePath,occupation,location})=> { 
             return {_id,firstName, lastName, picturePath,occupation,location}
     }
 )
+    // Broadcast friend update to all connected clients
+    broadcastFriendUpdate(id);
     res.status(200).json(friendData)
     } catch (error) {
         res.status(404).json({message: error.message})

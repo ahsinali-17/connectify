@@ -41,7 +41,7 @@ const userSchema = mongoose.Schema(
     resetPasswordToken: String,
     resetPasswordExpires: Date,
   },
-  { timestamps: true } //automatically add createdAt and updatedAt fields
+  { timestamps: true, expireAfterSeconds: 60 * 60 * 24 } 
 );
 
 export const User = mongoose.model("User", userSchema);

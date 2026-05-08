@@ -35,7 +35,7 @@ app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 /*Mongoose Setup*/
 mongoose
   .connect(process.env.MONGO_URL, {})
-  .then(() => console.log("MongoDB connected"))
+  .then(() => {console.log("MongoDB connected")})
   .catch((err) => console.log(`${err} did not connect`));
 
 /*File Storage*/

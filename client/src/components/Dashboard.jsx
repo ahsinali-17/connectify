@@ -12,7 +12,6 @@ const Dashboard = ({ User, postslen }) => {
   const [message, setmessage] = useState("");
 
   const addRemoveFriend = async () => {
-    console.log(currentUser.friends)
       let res = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/users/${currentUser._id}/${User._id}`,
                     {
@@ -25,7 +24,6 @@ const Dashboard = ({ User, postslen }) => {
                   );
                   let data = await res.json();
                   if(res.status===200) dispatch(setFriends({ friends: data }));
-    console.log(currentUser.friends)
     }
 
   return (
@@ -54,7 +52,7 @@ const Dashboard = ({ User, postslen }) => {
             />
           </span>
           <span className="text-left text-sm text-gray-500 cursor-text">
-            {User.friends.length} Followers &nbsp;{" "}
+            {User.friends.length} Following &nbsp;{" "}
             {postslen ? `${postslen} posts` : ""}
           </span>
         </div>

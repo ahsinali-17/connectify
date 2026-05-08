@@ -5,7 +5,7 @@ let io;
 export const initializeSocket = (server) => {
   io = new Server(server, {
     cors: {
-      origin: "*", // Allow all origins, modify as needed for security
+      origin: "*", 
       methods: ["GET", "POST"],
     },
   });
@@ -36,4 +36,11 @@ export const sendMsgToSocketId = (msg, socketId) => {
      console.log("Sending message to socket ID:", socketId);
     io.to(socketId).emit("message", msg);
   }
+};
+
+export const broadcastFriendUpdate = (userId) => {
+  if (!io) {
+    throw new Error("Socket.io is not initialized. Call initializeSocket first.");
+  }
+  io.emit("friend_updated", { userId });
 }; 

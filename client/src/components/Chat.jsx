@@ -24,13 +24,14 @@ const Chat = ({
   useEffect(() => {
     if (!socket) return;
     const handler = (msg) => {
+      if (chatPerson && msg.senderId._id === chatPerson._id) {
         setMessages((prevMessages) => [...prevMessages, msg]);
-      };
+      }
+    };
     socket.on("message", handler);
     return () => {
       socket.off("message", handler);
     };
-    // eslint-disable-next-line
   }, [socket, chatPerson, user, messages]);
 
   const handleSend = async (e) => {
@@ -123,7 +124,7 @@ const Chat = ({
         </div>
         <form
           onSubmit={handleSend}
-          className="flex items-center gap-2 p-2 border-t w-full"
+          className="flex items-center gap-2 p-2 border-t w-full pb-5"
         >
           <input
             type="text"
